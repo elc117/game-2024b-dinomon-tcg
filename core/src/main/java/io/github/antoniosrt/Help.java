@@ -11,23 +11,20 @@ public class Help implements Screen {
     private final Main game;
     private SpriteBatch batch;
     private Texture gameImage;
+    private Botao botaoBack;
 
     public Help(Main game) {
         this.game = game;
         batch = new SpriteBatch();
         gameImage = new Texture("help.png");
+
+        botaoBack = new Botao("helpback.png", 80, 80);
+        botaoBack.setButtonY(-180);
+        botaoBack.setButtonX(260);
     }
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(new InputAdapter() {
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                // Voltar para o MenuScreen ao tocar na tela
-                game.setScreen(new MenuScreen(game));
-                return true;
-            }
-        });
     }
 
     @Override
@@ -35,7 +32,13 @@ public class Help implements Screen {
         ScreenUtils.clear(0.1f, 0.1f, 0.1f, 1f);
         batch.begin();
         batch.draw(gameImage, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(botaoBack.getButtonTexture(), botaoBack.getButtonX(), botaoBack.getButtonY(), botaoBack.getButtonWidth(), botaoBack.getButtonHeight());
         batch.end();
+
+        if (botaoBack.detectaClique()){
+            game.setScreen(new MenuScreen(game));
+            dispose();
+        }
     }
 
     @Override
@@ -58,5 +61,6 @@ public class Help implements Screen {
     public void dispose() {
         batch.dispose();
         gameImage.dispose();
+        botaoBack.getButtonTexture().dispose();
     }
 }

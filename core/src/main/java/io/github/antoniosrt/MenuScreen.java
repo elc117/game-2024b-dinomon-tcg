@@ -10,21 +10,19 @@ public class MenuScreen implements Screen {
     private final Main game;
     private SpriteBatch batch;
     private Texture image;
-    private float buttonX, buttonY, buttonWidth, buttonHeight;
-    private Texture buttonTexture;
+    private Botao botaoJogar, botaoHelp;
 
     public MenuScreen(Main game) {
         this.game = game;
         batch = new SpriteBatch();
         image = new Texture("menubg.png");
 
-        buttonWidth = 80;
-        buttonHeight = 40;
-        buttonX = (Gdx.graphics.getWidth() - buttonWidth) / 2f;
-        buttonY = Gdx.graphics.getHeight() / 2f - buttonHeight / 2f;
-        buttonY -= 100;
+        botaoJogar = new Botao("botaojogar.png", 140, 70);
+        botaoJogar.setButtonY(50);
 
-        buttonTexture = new Texture(Gdx.files.internal("botaohelp.png"));
+        botaoHelp = new Botao("botaohelp.png", 140, 70);
+        botaoHelp.setButtonY(150);
+
     }
 
     @Override
@@ -37,20 +35,18 @@ public class MenuScreen implements Screen {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
         batch.begin();
         batch.draw(image, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-        batch.draw(buttonTexture, buttonX, buttonY, buttonWidth, buttonHeight);
+        batch.draw(botaoHelp.getButtonTexture(), botaoHelp.getButtonX(), botaoHelp.getButtonY(), botaoHelp.getButtonWidth(), botaoHelp.getButtonHeight());
+        batch.draw(botaoJogar.getButtonTexture(), botaoJogar.getButtonX(), botaoJogar.getButtonY(), botaoJogar.getButtonWidth(), botaoJogar.getButtonHeight());
         batch.end();
 
-        if (Gdx.input.isTouched()) {
-            float touchX = Gdx.input.getX();
-            float touchY = Gdx.graphics.getHeight() - Gdx.input.getY();
-
-            if (touchX >= buttonX && touchX <= buttonX + buttonWidth &&
-                touchY >= buttonY && touchY <= buttonY + buttonHeight) {
-                game.setScreen(new Help(game));
-                dispose();
-            }
-        }
+       if (botaoHelp.detectaClique()){
+           game.setScreen(new Help(game));
+           dispose();
+       }
+       // if (botaoJogar.detectaClique()){
+            //game.setScreen(new Help(game));
+            //dispose();
+       // }
     }
 
     @Override
@@ -74,7 +70,8 @@ public class MenuScreen implements Screen {
     public void dispose() {
         batch.dispose();
         image.dispose();
-        buttonTexture.dispose();
+        botaoHelp.getButtonTexture().dispose();
+        botaoJogar.getButtonTexture().dispose();
     }
 }
 
