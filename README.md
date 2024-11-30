@@ -84,3 +84,5 @@ Ajuda (Informação sobre as regras)
 Voltar
 Sair
 
+rodar -> lwjgl3launcher (executar arquivo)
+
