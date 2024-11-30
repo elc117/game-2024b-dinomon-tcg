@@ -35,10 +35,7 @@ Useful Gradle tasks and flags:
 Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
 For example, `core:clean` removes `build` folder only from the `core` project.
 
-Dinomon TCG
-
-TCG:
-Design cartas - Gustavo
+## Dinomon TCG
 
 O jogo vai ser um jokenpo de dinossauros que segue as regras de vitória abaixo, sendo necessário que cada jogador vença 3 vezes sendo uma de cada carta, uma de terra, uma de voador ou de aquático. Caso ele ganhe 3 terras ele ainda precisa ganhar um aquático e um voador.
 
@@ -46,18 +43,18 @@ No início de cada rodada, você inicia com 3 cartas na mão. Sendo assim, você
 Ao final da rodada e no início da rodada seguinte, cada jogador irá ganhar mais uma carta completando novamente 3 cartas na mão.
 
 Vão haver classes no jogo onde você pode selecionar, elas
-Classes
-Sortudo:
-Nao tem poder mas aumenta a chance de ter cartas melhores
-
-Predador:
-Pode roubar uma carta do inimigo.
-
-Herbívoro:
-Ganha um escudo que impede uma derrota das cartas.
-
-Velociraptor:
-Retira uma carta aleatória dos pontos do inimigo.
+    Classes
+    Sortudo:
+    Nao tem poder mas aumenta a chance de ter cartas melhores
+    
+    Predador:
+    Pode roubar uma carta do inimigo.
+    
+    Herbívoro:
+    Ganha um escudo que impede uma derrota das cartas.
+    
+    Velociraptor:
+    Retira uma carta aleatória dos pontos do inimigo.
 
 Terra
 Terra ganha Aquático,
