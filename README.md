@@ -86,3 +86,4 @@ Sair
 
 rodar -> lwjgl3launcher (executar arquivo)
 
+prompt para as cartas do jogo: "gere a imagem de um dinossauro astronauta, deve ser 450x750 pixels"
