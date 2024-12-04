@@ -19,4 +19,8 @@ public class Carta {
     public String getElemento() {
         return elemento;
     }
+
+    public Texture getTexture() {
+        return texture;
+    }
 }
