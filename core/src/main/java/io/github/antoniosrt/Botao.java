@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Gdx;
 
 public class Botao {
-    private float buttonX, buttonY, buttonWidth, buttonHeight;
+    private int buttonX, buttonY, buttonWidth, buttonHeight;
     private Texture buttonTexture;
 
-    public Botao(String texturePath, float buttonWidth, float buttonHeight) {
+    public Botao(String texturePath, int buttonWidth, int buttonHeight) {
         this.buttonWidth = buttonWidth;
         this.buttonHeight = buttonHeight;
-        this.buttonX = (Gdx.graphics.getWidth() - buttonWidth) / 2f;
-        this.buttonY = Gdx.graphics.getHeight() / 2f - buttonHeight / 2f;
+        this.buttonX = (Gdx.graphics.getWidth() - buttonWidth) / 2;
+        this.buttonY = Gdx.graphics.getHeight() / 2 - buttonHeight / 2;
         this.buttonTexture = new Texture(Gdx.files.internal(texturePath));
     }
 
@@ -33,19 +33,19 @@ public class Botao {
         this.buttonX += offsetX;
     }
 
-    public float getButtonX() {
+    public int getButtonX() {
         return buttonX;
     }
 
-    public float getButtonY() {
+    public int getButtonY() {
         return buttonY;
     }
 
-    public float getButtonWidth() {
+    public int getButtonWidth() {
         return buttonWidth;
     }
 
-    public float getButtonHeight() {
+    public int getButtonHeight() {
         return buttonHeight;
     }
 
