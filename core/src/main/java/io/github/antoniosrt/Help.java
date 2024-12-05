@@ -16,7 +16,7 @@ public class Help implements Screen {
     public Help(Main game) {
         this.game = game;
         batch = new SpriteBatch();
-        gameImage = new Texture("help.png");
+        gameImage = new Texture("helpbg.png");
 
         botaoBack = new Botao("helpback.png", 80, 80);
         botaoBack.setButtonY(-180);

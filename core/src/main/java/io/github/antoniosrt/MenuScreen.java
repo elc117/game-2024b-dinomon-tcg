@@ -50,6 +50,11 @@ public class MenuScreen implements Screen {
             game.setScreen(new Colecao(game));
             dispose();
         }
+
+        if (botaoJogar.detectaClique()) {
+            game.setScreen(new SelecaoScreen(game));
+            dispose();
+        }
     }
 
     @Override

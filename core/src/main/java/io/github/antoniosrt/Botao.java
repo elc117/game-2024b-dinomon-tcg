@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 public class Botao {
     private int buttonX, buttonY, buttonWidth, buttonHeight;
     private Texture buttonTexture;
+    private int selected; //flag para marcar qual classe esta selecionada na tela SelecaoScreen
 
     public Botao(String texturePath, int buttonWidth, int buttonHeight) {
         this.buttonWidth = buttonWidth;
@@ -13,6 +14,7 @@ public class Botao {
         this.buttonX = (Gdx.graphics.getWidth() - buttonWidth) / 2;
         this.buttonY = Gdx.graphics.getHeight() / 2 - buttonHeight / 2;
         this.buttonTexture = new Texture(Gdx.files.internal(texturePath));
+        this.selected = -1;
     }
 
     public boolean detectaClique() {
@@ -51,6 +53,17 @@ public class Botao {
 
     public Texture getButtonTexture() {
         return buttonTexture;
+    }
+
+    public void setButtonTexture(String texturePath) {
+        this.buttonTexture = new Texture(Gdx.files.internal(texturePath));
+    }
+
+    public int getSelected() {
+        return selected;
+    }
+    public void setSelected(int selected) {
+        this.selected = selected;
     }
 
     public void dispose() {
