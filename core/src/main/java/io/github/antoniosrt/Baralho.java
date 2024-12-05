@@ -8,20 +8,20 @@ public class Baralho {
     public void Baralho(){
         cartas = new Carta[totalCartas];
         int i = 0;
+        //0 - vento 1 - agua 2 - terra
         for (int tipo = 0; tipo < 3; tipo++) {
-            for (int valor = 1; valor < 4; valor++) {
-                cartas[i] = new Carta(valor, tipo);
+            for (int valor = 1; valor < 10; valor++) {
+                cartas[i] = new Carta(tipo,valor,i,"core/assets/carta"+tipo+valor+".png");
                 i++;
             }
         }
     }
 
     public Carta retirarCarta(){
-        int i = (int) (Math.random() * 10);
-        Carta carta = cartas[i];
-        cartas[i] = null;
+
         this.totalCartas--;
-        return carta;
+        Carta cartaTopo = cartas[totalCartas];
+        return cartaTopo;
     }
 
     public Carta[] embaralharCartas(){

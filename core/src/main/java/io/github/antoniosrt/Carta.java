@@ -4,19 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Carta {
-    private String elemento;
+    private int elemento;
     private int valor;
     private int id;
     private Texture texture;
 
-    public Carta(String elemento, int valor, int id, String texturePath){
+    public Carta(int elemento, int valor, int id, String texturePath){
         this.elemento = elemento;
         this.valor = valor;
         this.id = id;
         this.texture = new Texture(Gdx.files.internal(texturePath));
     }
 
-    public String getElemento() {
+    public int getElemento() {
         return elemento;
     }
 

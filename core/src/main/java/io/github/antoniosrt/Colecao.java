@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +34,10 @@ public class Colecao implements Screen {
         setaDir.setButtonX(250);
         setaEsq.setButtonX(-250);
 
-       for (int i = 1; i <= 10; i++) {
-           adicionarCarta(new Carta("Vento", i, i, "vento/" + i + ".png"));
-          adicionarCarta(new Carta("Água", i, i, "agua/" + i + ".png"));
-           adicionarCarta(new Carta("Terra", i, i, "terra/" + i + ".png"));
+        for (int i = 1; i <= 10; i++) {
+            adicionarCarta(new Carta(0, i, i, "vento/" + i + ".png"));
+            adicionarCarta(new Carta(1, i, i, "agua/" + i + ".png"));
+            adicionarCarta(new Carta(2, i, i, "terra/" + i + ".png"));
         }
     }
 
@@ -80,7 +81,7 @@ public class Colecao implements Screen {
             }
         }
 
-        if (botaoBack.detectaClique()){
+        if (botaoBack.detectaClique()) {
             game.setScreen(new MenuScreen(game));
             dispose();
         }

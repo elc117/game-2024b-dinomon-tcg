@@ -2,42 +2,46 @@ package io.github.antoniosrt;
 
 public class Jogador {
     private String nome;
-    private int pontos;
-    private int vitorias;
-    private int derrotas;
-    private int empates;
+    private int[] vitorias;
+    private int[] derrotas;
+    private int[] empates;
 
-    private Carta[] Mao;
+
+    private MaoJogador Mao;
 
     private Baralho baralho;
+
     public Jogador(String nome) {
         this.nome = nome;
-        this.pontos = 0;
-        this.vitorias = 0;
-        this.derrotas = 0;
-        this.empates = 0;
+        for (int i = 0; i < 3; i++) {
+            this.vitorias[i] = 0;
+            this.derrotas[i] = 0;
+            this.empates[i] = 0;
+        }
         this.baralho = new Baralho();
     }
 
     public void selecionarCarta(int indexCarta) {
-        this.baralho.jogarCarta(indexCarta);
+        this.Mao.jogarCarta(indexCarta);
     }
+
     public String getNome() {
         return nome;
     }
 
 
-    public void adicionarVitoria() {
-        this.vitorias++;
-        this.pontos += 3;
+    public void iniciarJogo(){
+        this.Mao = new MaoJogador();
+        for (int i = 0; i < 3; i++) {
+            this.Mao.adicionarCarta(baralho.retirarCarta());
+        }
     }
 
-    public void adicionarDerrota() {
-        this.derrotas++;
+    public void comprarCarta(){
+        this.Mao.comprarCarta(baralho);
     }
 
-    public void adicionarEmpate() {
-        this.empates++;
-        this.pontos++;
+    public Carta[] getCartas(){
+        return this.Mao.getCartas();
     }
 }
