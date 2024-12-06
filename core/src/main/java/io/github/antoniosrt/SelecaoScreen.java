@@ -106,6 +106,10 @@ public class SelecaoScreen implements Screen {
                 botaoVen.setSelected(0);
             }
         }
+        if(botaoFacil.detectaClique()){
+            game.setScreen(new PartidaScreen(game));
+            dispose();
+        }
     }
 
     @Override

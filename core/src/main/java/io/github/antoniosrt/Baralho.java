@@ -1,49 +1,51 @@
 package io.github.antoniosrt;
 
+import java.util.Random;
+
 public class Baralho {
 
-    private int totalCartas = 10;
+    private int totalCartas = 30;
     private Carta[] cartas;
+    private Random random;
 
-    public void Baralho(){
+    public Baralho() {
         cartas = new Carta[totalCartas];
         int i = 0;
         //0 - vento 1 - agua 2 - terra
         for (int tipo = 0; tipo < 3; tipo++) {
-            for (int valor = 1; valor < 10; valor++) {
-                cartas[i] = new Carta(tipo,valor,i,"core/assets/carta"+tipo+valor+".png");
+            for (int valor = 1; valor < 11; valor++) {
+                String path = UtilHelper.getElementoPath(tipo);
+                cartas[i] = new Carta(tipo, valor, i, path + "/" + valor + ".png");
                 i++;
             }
         }
+        cartas = embaralharCartas();
     }
 
-    public Carta retirarCarta(){
-
+    public Carta retirarCarta() {
+        if (totalCartas == 0) return null; // Verifica se ainda há cartas no baralho
+        Carta cartaTopo = cartas[totalCartas - 1]; // Acessa o índice correto
+        cartas[totalCartas - 1] = null;
+        // Define a posição como nula após retirar a carta
+        System.out.println(cartaTopo.getTexture());
         this.totalCartas--;
-        Carta cartaTopo = cartas[totalCartas];
         return cartaTopo;
     }
 
-    public Carta[] embaralharCartas(){
-        Carta[] cartasEmbaralhadas = new Carta[10];
-        int[] indicesJaUtilizados = new int[10];
-        for (int i = 0; i < 10; i++) {
-            int indiceAleatorioCarta = (int) (Math.random() * 10);
-            while (indicesJaUtilizados[indiceAleatorioCarta] == 1) {
-                indiceAleatorioCarta = (int) (Math.random() * 10);
-            }
-            indicesJaUtilizados[indiceAleatorioCarta] = 1;
-            cartasEmbaralhadas[indiceAleatorioCarta] = retirarCarta();
+    public Carta[] embaralharCartas() {
+        random = new Random();
+        Carta[] cartasEmbaralhadas = new Carta[totalCartas];
+        System.arraycopy(cartas, 0, cartasEmbaralhadas, 0, totalCartas); // Copiar cartas para novo array
+        for (int i = totalCartas - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+            Carta temp = cartasEmbaralhadas[i];
+            cartasEmbaralhadas[i] = cartasEmbaralhadas[j];
+            cartasEmbaralhadas[j] = temp;
         }
-
         return cartasEmbaralhadas;
     }
 
-    public void jogarCarta(int indexCarta){
-        cartas[indexCarta] = null;
-        this.totalCartas--;
-    }
-    public int getTotalCartas(){
+    public int getTotalCartas() {
         return this.totalCartas;
     }
 

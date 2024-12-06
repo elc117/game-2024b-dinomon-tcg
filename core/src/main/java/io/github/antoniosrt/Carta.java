@@ -8,11 +8,12 @@ public class Carta {
     private int valor;
     private int id;
     private Texture texture;
-
+    private String texturePath;
     public Carta(int elemento, int valor, int id, String texturePath){
         this.elemento = elemento;
         this.valor = valor;
         this.id = id;
+        this.texturePath = texturePath;
         this.texture = new Texture(Gdx.files.internal(texturePath));
     }
 
@@ -22,5 +23,8 @@ public class Carta {
 
     public Texture getTexture() {
         return texture;
+    }
+    public String getTexturePath() {
+        return texturePath;
     }
 }

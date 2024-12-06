@@ -8,12 +8,9 @@ public class MaoJogador {
         cartas = new Carta[totalCartas];
     }
 
-    public void adicionarCarta(Carta carta) {
-        for (int i = 0; i < totalCartas; i++) {
+    public void adicionarCarta(Carta carta,int i) {
             if (cartas[i] == null) {
                 cartas[i] = carta;
-                break;
-            }
         }
     }
 
@@ -36,16 +33,15 @@ public class MaoJogador {
     }
 
     public Carta comprarCarta(Baralho baralho) {
-        for (int i = 0; i < totalCartas; i++) {
-            if (cartas[i] == null) {
-                cartas[i] = baralho.retirarCarta();
-                return cartas[i];
-            }
-        }
-        return null;
+        return baralho.retirarCarta();
     }
 
     public void jogarCarta(int index) {
         cartas[index] = null;
+    }
+    public void encherMao(Baralho baralho){
+        for (int i = 0; i < totalCartas; i++) {
+            adicionarCarta(comprarCarta(baralho),i);
+        }
     }
 }
