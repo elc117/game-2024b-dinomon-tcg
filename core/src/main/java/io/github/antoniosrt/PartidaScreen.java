@@ -14,7 +14,7 @@ public class PartidaScreen implements Screen {
     private BitmapFont font;
     private Partida partida;
 
-    public PartidaScreen(Main game) {
+    public PartidaScreen(Main game, int classe) {
         this.game = game;
         batch = new SpriteBatch();
         image = new Texture("playmat.png");

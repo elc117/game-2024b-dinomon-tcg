@@ -11,7 +11,7 @@ public class SelecaoScreen implements Screen {
     private SpriteBatch batch;
     private Texture image;
     private Botao botaoFacil, botaoDificil, botaoCarn, botaoHerb, botaoVen, botaoBack;
-    private int carn,herb,ven;
+    private int classe;
 
     public SelecaoScreen(Main game) {
         this.game = game;
@@ -29,7 +29,7 @@ public class SelecaoScreen implements Screen {
         botaoBack.setButtonY(-350);
         botaoBack.setButtonX(400);
 
-        botaoCarn = new Botao("classes/1.png", 300, 160);
+        botaoCarn = new Botao("classes/4.png", 300, 160);
         botaoCarn.setButtonY(-120);
         botaoCarn.setButtonX(-350);
         botaoCarn.setSelected(1);
@@ -61,53 +61,64 @@ public class SelecaoScreen implements Screen {
         batch.draw(botaoBack.getButtonTexture(), botaoBack.getButtonX(), botaoBack.getButtonY(), botaoBack.getButtonWidth(), botaoBack.getButtonHeight());
         batch.end();
 
-       /* if (botaoFacil.detectaClique()) {
-            game.setScreen(new Help(game));
+        if (Gdx.input.justTouched()) {
+            if (botaoBack.detectaClique()) {
+                game.setScreen(new MenuScreen(game));
+                dispose();
+            }
+
+            if (botaoCarn.detectaClique()) {
+                if (botaoCarn.getSelected() == 0) {
+                    botaoCarn.setButtonTexture("classes/4.png");
+                    botaoCarn.setSelected(1);
+                    botaoHerb.setButtonTexture("classes/2.png");
+                    botaoHerb.setSelected(0);
+                    botaoVen.setButtonTexture("classes/3.png");
+                    botaoVen.setSelected(0);
+                } else {
+                    botaoCarn.setButtonTexture("classes/1.png");
+                    botaoCarn.setSelected(0);
+                }
+            }
+
+            if (botaoHerb.detectaClique()) {
+                if (botaoHerb.getSelected() == 0) {
+                    botaoHerb.setButtonTexture("classes/5.png");
+                    botaoHerb.setSelected(1);
+                    botaoCarn.setButtonTexture("classes/1.png");
+                    botaoCarn.setSelected(0);
+                    botaoVen.setButtonTexture("classes/3.png");
+                    botaoVen.setSelected(0);
+                } else {
+                    botaoHerb.setButtonTexture("classes/2.png");
+                    botaoHerb.setSelected(0);
+                }
+            }
+
+            if (botaoVen.detectaClique()) {
+                if (botaoVen.getSelected() == 0) {
+                    botaoVen.setButtonTexture("classes/6.png");
+                    botaoVen.setSelected(1);
+                    botaoHerb.setButtonTexture("classes/2.png");
+                    botaoHerb.setSelected(0);
+                    botaoCarn.setButtonTexture("classes/1.png");
+                    botaoCarn.setSelected(0);
+                } else {
+                    botaoVen.setButtonTexture("classes/3.png");
+                    botaoVen.setSelected(0);
+                }
+            }
+        }
+
+        if (botaoFacil.detectaClique()) {
+            classe = botaoFacil.verificaClasse(botaoCarn.getSelected(),botaoHerb.getSelected(),botaoVen.getSelected());
+            game.setScreen(new PartidaScreen(game, classe));
             dispose();
         }
 
         if (botaoDificil.detectaClique()) {
-            game.setScreen(new Colecao(game));
-            dispose();
-        }*/
-        if (botaoBack.detectaClique()){
-            game.setScreen(new MenuScreen(game));
-            dispose();
-        }
-        if (botaoCarn.detectaClique()){
-            carn = botaoCarn.getSelected();
-            if (carn == 0){
-                botaoCarn.setButtonTexture("classes/4.png");
-                botaoCarn.setSelected(1);
-            } else {
-                botaoCarn.setButtonTexture("classes/1.png");
-                botaoCarn.setSelected(0);
-            }
-        }
-
-        if (botaoHerb.detectaClique()){
-            herb = botaoHerb.getSelected();
-            if (herb == 0){
-                botaoHerb.setButtonTexture("classes/5.png");
-                botaoHerb.setSelected(1);
-            } else {
-                botaoHerb.setButtonTexture("classes/2.png");
-                botaoHerb.setSelected(0);
-            }
-        }
-
-        if (botaoVen.detectaClique()){
-            ven = botaoVen.getSelected();
-            if (ven == 0){
-                botaoVen.setButtonTexture("classes/6.png");
-                botaoVen.setSelected(1);
-            } else {
-                botaoVen.setButtonTexture("classes/3.png");
-                botaoVen.setSelected(0);
-            }
-        }
-        if(botaoFacil.detectaClique()){
-            game.setScreen(new PartidaScreen(game));
+            classe = botaoFacil.verificaClasse(botaoCarn.getSelected(),botaoHerb.getSelected(),botaoVen.getSelected());
+            game.setScreen(new PartidaScreen(game, classe));
             dispose();
         }
     }
@@ -138,6 +149,9 @@ public class SelecaoScreen implements Screen {
         image.dispose();
         botaoFacil.getButtonTexture().dispose();
         botaoDificil.getButtonTexture().dispose();
-        //botaoCartas.getButtonTexture().dispose();
+        botaoCarn.getButtonTexture().dispose();
+        botaoHerb.getButtonTexture().dispose();
+        botaoVen.getButtonTexture().dispose();
+        botaoBack.getButtonTexture().dispose();
     }
 }

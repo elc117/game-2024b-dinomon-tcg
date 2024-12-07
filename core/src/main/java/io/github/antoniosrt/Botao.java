@@ -59,6 +59,17 @@ public class Botao {
         this.buttonTexture = new Texture(Gdx.files.internal(texturePath));
     }
 
+    public int verificaClasse(int carn, int herb, int ven){
+        if (carn ==1){
+            return 1;
+        } else if (herb ==1){
+            return 2;
+        } else if (ven ==1){
+            return 3;
+        }
+        return 1;
+    }
+
     public int getSelected() {
         return selected;
     }
