@@ -1,5 +1,7 @@
 package io.github.antoniosrt;
 
+import com.badlogic.gdx.Screen;
+
 import static io.github.antoniosrt.UtilHelper.*;
 
 public class Partida {
@@ -55,18 +57,22 @@ public class Partida {
         return jogadaTurno;
     }
 
-    public void validarJogadas() {
+    public boolean validarJogadas() {
         //validar jogadas
         if ((jogador1.getMao().getTotalCartas() == 2 && jogador1.getJogada()) && (jogador2.getJogada() && jogador2.getMao().getTotalCartas() == 2)) {
             jogadaTurno = true;
+            return true;
         }
         jogadaTurno = false;
+        return false;
     }
     public int getTurno(){
         return turno;
     }
-
-    public void combate() throws InterruptedException {
+    public void setJogadaTurno(Boolean jogada){
+        jogadaTurno = jogada;
+    }
+    public int combate() throws InterruptedException {
 //        Thread.sleep(5000);
         int resultado = combateCartas();
         if(resultado == 1){
@@ -78,8 +84,12 @@ public class Partida {
         else{
             System.out.println("Empate");
         }
-        verificarVitoria();
+        int resultadoVitoria = verificarVitoria();
+        if(resultadoVitoria !=0){
+            return resultadoVitoria;
+        }
         iniciarNovaRodada();
+        return 0;
     }
     public int combateCartas() throws InterruptedException {
         Carta cartaJogador1 = jogador1.getMao().getCartaJogada();
@@ -122,15 +132,16 @@ public class Partida {
     public void pontuarVitoria(Jogador jogador,int elemento){
         jogador.setVitorias(elemento);
     }
-    public void verificarVitoria(){
+    public int verificarVitoria(){
         for(int i = 0; i < 3; i++){
             if(jogador1.getVitorias(i) == 3){
-                System.out.println("Jogador 1 venceu a partida");
+                return 1;
             }
             else if(jogador2.getVitorias(i) == 3){
-                System.out.println("Jogador 2 venceu a partida");
+                return 2;
             }
         }
+        return 0;
     }
     public void iniciarNovaRodada(){
         turno++;

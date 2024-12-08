@@ -15,7 +15,8 @@ public class PartidaScreen implements Screen {
     private Partida partida;
     private boolean cartasSelecionadas = false;
     private boolean cartasRenderizadas = false;
-    private long tempoDeEspera;
+    private long tempoDeEspera = 0;
+
     public PartidaScreen(Main game, int classe) {
         this.game = game;
         batch = new SpriteBatch();
@@ -40,56 +41,66 @@ public class PartidaScreen implements Screen {
         int x = Gdx.graphics.getWidth() / 2 - 180;
         int yMeio = Gdx.graphics.getHeight() / 2 + 70;
         int yFim = -Gdx.graphics.getHeight() + (Gdx.graphics.getHeight() - 100);
+
         batch.begin();
         batch.draw(image, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         font.draw(batch, "Tempo restante: " + (int) partida.getTimeLeft(), Gdx.graphics.getWidth() - 180, yMeio);
         font.draw(batch, "Turno: " + partida.getTurno(), Gdx.graphics.getWidth() - 180, yMeio - 20);
 
-        // Renderizar as cartas jogadas no meio do tabuleiro
-        if (cartasSelecionadas && !cartasRenderizadas) {
-            if (partida.getJogador1().getJogada()) {
-                Carta cartaJogada1 = partida.getJogador1().getMao().getCartaJogada();
-                batch.draw(cartaJogada1.getTexture(), Gdx.graphics.getWidth() / 2 - cartaJogada1.getWidth() / 2, Gdx.graphics.getHeight() / 2 - 200, cartaJogada1.getWidth(), cartaJogada1.getHeight());
+        // Renderizar as cartas jogadas no meio do tabuleiro se ambas foram selecionadas
+        if (cartasSelecionadas && cartasRenderizadas) {
+            Carta cartaJogada1 = partida.getJogador1().getMao().getCartaJogada();
+            Carta cartaJogada2 = partida.getJogador2().getMao().getCartaJogada();
+            if (cartaJogada1 != null) {
+                batch.draw(cartaJogada1.getTexture(), Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() / 2 - 100, cartaJogada1.getWidth(), cartaJogada1.getHeight());
             }
-            if (partida.getJogador2().getJogada()) {
-                Carta cartaJogada2 = partida.getJogador2().getMao().getCartaJogada();
-                batch.draw(cartaJogada2.getTexture(), Gdx.graphics.getWidth() / 2 - cartaJogada2.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 50, cartaJogada2.getWidth(), cartaJogada2.getHeight());
+            if (cartaJogada2 != null) {
+                batch.draw(cartaJogada2.getTexture(), Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() / 2 + 50, cartaJogada2.getWidth(), cartaJogada2.getHeight());
             }
         }
-        //desenha as cartas do jogador 1
+
+        // Renderizar as cartas da mão do jogador 1
         for (int i = 0; i < 3; i++) {
-            //adiciona os pontos de vitoria na tela jogador 1
+            // Adicionar os pontos de vitória na tela do jogador 1
             font.draw(batch, partida.getJogador1().getPontosVitoria(i), 55 + i * 90, -yFim);
-            //adiciona os pontos de vitoria na tela jogador 2
+            // Adicionar os pontos de vitória na tela do jogador 2
             font.draw(batch, partida.getJogador2().getPontosVitoria(i), Gdx.graphics.getWidth() - 240 + i * 90, Gdx.graphics.getHeight() - 200);
-            //adiciona as cartas na mao do jogador
+            // Adicionar as cartas na mão do jogador
             Carta carta = partida.getJogador1().getCartas()[i];
             if (carta != null) {
                 float xCarta = x + i * 140;
                 float yCarta = 15;
-                //achar o meio da tela
                 batch.draw(carta.getTexture(), x + i * 140, yCarta, carta.getWidth(), carta.getHeight());
                 carta.setCartaX(xCarta);
                 carta.setCartaY(yCarta);
-//                System.out.println("Carta " + i + ": Elemento = " + carta.getElemento() + ", Texture = " + carta.getTexture());
             }
         }
         batch.end();
-        partida.validarJogadas();
+
+        partida.setJogadaTurno(partida.validarJogadas());
         if (!partida.getJogada()) {
             // Atualizar o tempo restante do turno
             partida.updateTurnTime(delta);
         } else {
-            try {
-                // Aguarde 3 segundos antes de calcular o dano
-                partida.combate();
-                cartasSelecionadas = false;
-                cartasRenderizadas = false;
-
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            System.out.println("Jogadas válidas");
+            if (cartasRenderizadas && (System.currentTimeMillis() - tempoDeEspera) >= 3000) {
+                try {
+                    // Aguarde 3 segundos antes de calcular o dano
+                    int resultado = partida.combate();
+                    if(resultado == 1){
+//                        game.setScreen(new VitoriaScreen(game, "Jogador 1"));
+                    }
+                    if(resultado == 2){
+//                        game.setScreen(new derrotaScreen(game, "Jogador 1"));
+                    }
+                    cartasSelecionadas = false;
+                    cartasRenderizadas = false;
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
+
         for (int i = 0; i < partida.getJogador1().getMao().getTotalCartas(); i++) {
             Carta carta = partida.getJogador1().getCartas()[i];
             if (carta == null) {
@@ -100,20 +111,13 @@ public class PartidaScreen implements Screen {
                 partida.getJogador1().selecionarCarta(i);
                 partida.getJogador2().selecionarCarta(i);
                 cartasSelecionadas = partida.getJogador1().getJogada() && partida.getJogador2().getJogada();
-
+                if (cartasSelecionadas) {
+                    tempoDeEspera = System.currentTimeMillis();
+                    cartasRenderizadas = true;
+                }
             }
         }
-
-
     }
-        public static Boolean manualSleep(long millis) {
-            long startTime = System.currentTimeMillis();
-            while ((System.currentTimeMillis() - startTime) < millis) {
-                // Loop vazio para "dormir"
-            }
-            return true;
-        }
-
 
     @Override
     public void resize(int width, int height) {
