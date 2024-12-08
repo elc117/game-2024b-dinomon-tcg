@@ -87,3 +87,10 @@ Sair
 rodar -> lwjgl3launcher (executar arquivo)
 
 prompt para as cartas do jogo: "gere a imagem de um dinossauro astronauta, deve ser 450x750 pixels"
+
+fonte das infos do quiz:
+https://dinossaurosdobrasil.wixsite.com/dinossauros-e-afins/macrocollum
+https://jornal.usp.br/ciencias/reconstituicao-de-cranio-revela-que-dinossauro-de-233-milhoes-de-anos-era-cacador-com-visao-agucada/
+https://jornal.usp.br/ciencias/ciencias-biologicas/mandibula-voraz-conheca-o-dinossauro-predador-mais-antigo-do-brasil/
+https://www.geoparquequartacolonia.com.br/home
+https://www.ufsm.br/midias/arco/tataravo-de-gigantes
