@@ -17,7 +17,12 @@ public class Jogador {
     }
 
     public void selecionarCarta(int indexCarta) {
+        this.jogadaTurno = true;
         this.Mao.jogarCarta(indexCarta);
+        System.out.println("Jogador " + this.nome + " jogou carta " + indexCarta);
+        System.out.println("Carta jogada: " + this.Mao.getCartaJogada().getElemento());
+        System.out.println("Total de cartas na mão: " + this.Mao.getTotalCartas());
+        return ;
     }
 
     public String getNome() {
@@ -29,7 +34,7 @@ public class Jogador {
         baralho.embaralharCartas();
         this.Mao = new MaoJogador();
         this.Mao.encherMao(baralho);
-        System.out.println("Mão do jogador " + this.nome + ": Quantidade de cartas: " + this.Mao.getTotalCartas());
+//        System.out.println("Mão do jogador " + this.nome + ": Quantidade de cartas: " + this.Mao.getTotalCartas());
     }
 
     public void comprarCarta() {
@@ -48,5 +53,16 @@ public class Jogador {
     }
     public Boolean getJogada(){
         return this.jogadaTurno;
+    }
+
+    public String getPontosVitoria(int index){
+        return Integer.toString(vitorias[index]);
+    }
+
+    public void setVitorias(int index){
+        this.vitorias[index]++;
+    }
+    public int getVitorias(int index){
+        return vitorias[index];
     }
 }

@@ -27,7 +27,6 @@ public class Baralho {
         Carta cartaTopo = cartas[totalCartas - 1]; // Acessa o índice correto
         cartas[totalCartas - 1] = null;
         // Define a posição como nula após retirar a carta
-        System.out.println(cartaTopo.getTexture());
         this.totalCartas--;
         return cartaTopo;
     }
