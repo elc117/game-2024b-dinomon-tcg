@@ -15,12 +15,24 @@ public class PartidaScreen implements Screen {
     private Partida partida;
     private boolean cartasSelecionadas = false;
     private boolean cartasRenderizadas = false;
+    private boolean powerup1=true, powerup2=true;
     private long tempoDeEspera;
+    private int quiz=0;
+    private Botao  botaoP1, botaoP2;
+
     public PartidaScreen(Main game, int classe) {
         this.game = game;
         batch = new SpriteBatch();
         image = new Texture("playmat.png");
         font = new BitmapFont();
+
+        botaoP2 = new Botao("powerupbuttons/theyon.png",120,60);
+        botaoP2.setButtonX(300);
+        botaoP2.setButtonY(-120);
+        botaoP1 = new Botao("powerupbuttons/ouron.png",120,60);
+        botaoP1.setButtonX(-250);
+        botaoP1.setButtonY(-20);
+
         iniciarPartida();
     }
 
@@ -74,6 +86,17 @@ public class PartidaScreen implements Screen {
 //                System.out.println("Carta " + i + ": Elemento = " + carta.getElemento() + ", Texture = " + carta.getTexture());
             }
         }
+
+        if (powerup1){
+            batch.draw(botaoP1.getButtonTexture(), botaoP1.getButtonX(), botaoP1.getButtonY(), botaoP1.getButtonWidth(), botaoP1.getButtonHeight());
+        }
+        if (powerup2){
+            batch.draw(botaoP2.getButtonTexture(), botaoP2.getButtonX(), botaoP2.getButtonY(), botaoP2.getButtonWidth(), botaoP2.getButtonHeight());
+        }
+        if (quiz == 1){
+                //tela questao nao seiii
+        }
+
         batch.end();
         partida.validarJogadas();
         if (!partida.getJogada()) {
@@ -104,7 +127,10 @@ public class PartidaScreen implements Screen {
             }
         }
 
-
+        if (botaoP1.detectaClique() && powerup1) {
+            quiz=1;
+            botaoP1.setButtonTexture("powerupbuttons/ouroff.png");
+        }
     }
         public static Boolean manualSleep(long millis) {
             long startTime = System.currentTimeMillis();

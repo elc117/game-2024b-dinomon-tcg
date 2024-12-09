@@ -126,9 +126,13 @@ public class Partida {
         for(int i = 0; i < 3; i++){
             if(jogador1.getVitorias(i) == 3){
                 System.out.println("Jogador 1 venceu a partida");
+           //     game.setScreen(new VitoriaScreen(game));
+           //     dispose();
             }
             else if(jogador2.getVitorias(i) == 3){
                 System.out.println("Jogador 2 venceu a partida");
+                //     game.setScreen(new DerrotaScreen(game));
+                //     dispose();
             }
         }
     }
