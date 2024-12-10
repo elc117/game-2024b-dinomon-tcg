@@ -1,7 +1,5 @@
 package io.github.antoniosrt;
 
-import com.badlogic.gdx.Screen;
-
 import static io.github.antoniosrt.UtilHelper.*;
 
 public class Partida {
