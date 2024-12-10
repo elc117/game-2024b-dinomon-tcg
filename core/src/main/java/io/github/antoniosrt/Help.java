@@ -37,7 +37,6 @@ public class Help implements Screen {
 
         if (botaoBack.detectaClique()){
             game.setScreen(new MenuScreen(game));
-            dispose();
         }
     }
 

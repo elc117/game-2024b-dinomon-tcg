@@ -43,17 +43,14 @@ public class MenuScreen implements Screen {
 
         if (botaoHelp.detectaClique()) {
             game.setScreen(new Help(game));
-            dispose();
         }
 
         if (botaoCartas.detectaClique()) {
             game.setScreen(new Colecao(game));
-            dispose();
         }
 
         if (botaoJogar.detectaClique()) {
             game.setScreen(new SelecaoScreen(game));
-            dispose();
         }
     }
 

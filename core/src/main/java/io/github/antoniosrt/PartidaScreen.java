@@ -20,7 +20,7 @@ public class PartidaScreen implements Screen {
     public PartidaScreen(Main game, int classe) {
         this.game = game;
         batch = new SpriteBatch();
-        image = new Texture("playmat.png");
+        image = new Texture(Gdx.files.internal("playmat.png"));
         font = new BitmapFont();
         iniciarPartida();
     }
@@ -91,7 +91,7 @@ public class PartidaScreen implements Screen {
 //                        game.setScreen(new VitoriaScreen(game, "Jogador 1"));
                     }
                     if(resultado == 2){
-//                        game.setScreen(new derrotaScreen(game, "Jogador 1"));
+//                        game.setScreen(new DerrotaScreen(game, "Jogador 1"));
                     }
                     cartasSelecionadas = false;
                     cartasRenderizadas = false;

@@ -16,7 +16,7 @@ public class SelecaoScreen implements Screen {
     public SelecaoScreen(Main game) {
         this.game = game;
         batch = new SpriteBatch();
-        image = new Texture("selectmenu.png");
+        image = new Texture(Gdx.files.internal("selectmenu.png"));
 
         botaoFacil = new Botao("botaofacil.png", 140, 70);
         botaoFacil.setButtonY(320);
@@ -64,7 +64,6 @@ public class SelecaoScreen implements Screen {
         if (Gdx.input.justTouched()) {
             if (botaoBack.detectaClique()) {
                 game.setScreen(new MenuScreen(game));
-                dispose();
             }
 
             if (botaoCarn.detectaClique()) {
@@ -113,13 +112,11 @@ public class SelecaoScreen implements Screen {
         if (botaoFacil.detectaClique()) {
             classe = botaoFacil.verificaClasse(botaoCarn.getSelected(),botaoHerb.getSelected(),botaoVen.getSelected());
             game.setScreen(new PartidaScreen(game, classe));
-            dispose();
         }
 
         if (botaoDificil.detectaClique()) {
             classe = botaoFacil.verificaClasse(botaoCarn.getSelected(),botaoHerb.getSelected(),botaoVen.getSelected());
             game.setScreen(new PartidaScreen(game, classe));
-            dispose();
         }
     }
 
@@ -145,13 +142,30 @@ public class SelecaoScreen implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        image.dispose();
-        botaoFacil.getButtonTexture().dispose();
-        botaoDificil.getButtonTexture().dispose();
-        botaoCarn.getButtonTexture().dispose();
-        botaoHerb.getButtonTexture().dispose();
-        botaoVen.getButtonTexture().dispose();
-        botaoBack.getButtonTexture().dispose();
+        if (batch != null) {
+            batch.dispose();
+        }
+        if (image != null) {
+            image.dispose();
+        }
+        if (botaoFacil != null && botaoFacil.getButtonTexture() != null) {
+            botaoFacil.getButtonTexture().dispose();
+        }
+        if (botaoDificil != null && botaoDificil.getButtonTexture() != null) {
+            botaoDificil.getButtonTexture().dispose();
+        }
+        if (botaoCarn != null && botaoCarn.getButtonTexture() != null) {
+            botaoCarn.getButtonTexture().dispose();
+        }
+        if (botaoHerb != null && botaoHerb.getButtonTexture() != null) {
+            botaoHerb.getButtonTexture().dispose();
+        }
+        if (botaoVen != null && botaoVen.getButtonTexture() != null) {
+            botaoVen.getButtonTexture().dispose();
+        }
+        if (botaoBack != null && botaoBack.getButtonTexture() != null) {
+            botaoBack.getButtonTexture().dispose();
+        }
     }
+
 }
