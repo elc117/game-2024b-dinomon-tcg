@@ -35,7 +35,7 @@ Useful Gradle tasks and flags:
 Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
 For example, `core:clean` removes `build` folder only from the `core` project.
 
-#Dinomon
+## Dinomon
 O jogo de cartas do Geoparque Quarta Colônia
 
 Autoria: Antônio Sérgio Tolio e Gustavo Pott, alunos de Sistemas de Informação, UFSM
@@ -44,10 +44,21 @@ Dinomon é um jogo digital de cartas de dinossauros inspirado no Geoparque Quart
 
 O jogo foi desenvolvido em Java com a utilização da bilioteca gráfica libgdx para a disciplina de Paradigmas de Programação do segundo semestre de 2024. Os criadores dividiram as tarefas entre si. Enquanto Antônio ficou responsável pela lógica do jogo e implementação da mesma, Gustavo foi responsável pela criação das artes, implementação das telas e botões e quiz. A ideia do jogo é crédito de Gustavo, que pensou em recriar o mini game do Club Penguin em sua versão jurássica. Ao contar isto para Antônio, ele ficou interessado e os dois decidiram juntar forças. Todas as imagens presentes no jogo foram geradas com o auxílio da inteligência artifical do Windows, o Copilot. O prompt utilizado para a criação das cartas foi: quero a imagem de um dinossauro astronauta (insira aqui a descrição dele) no formato 750x450. 
 
+## Desenvolvimento
 
-fonte das infos do quiz:
+Iniciamos o processo de desenvolvimento do Dinomon em 24 de novembro, quando decidimos um título, conversamos sobre as regras do jogo e como faríamos para desenvolvê-lo. A partir disso, foi começado o planejamento das telas, os caminhos a serem percorridos pelo usuário e a ambientação com a libgdx. Finalizamos o jogo com uma tela de menu, uma tela de ajuda, uma coleção (onde o jogador pode visuzalizar todas as cartas disponíveis), a tela do jogo, as telas do quiz e as telas de vitória e derrota. A ambientação com a biblioteca inicialmente foi desafiadora, até entendermos os processos que poderíamos realizar levou um tempo. Um bom ajudante neste momento inicial foram as inteligências artificiais. Analisamos códigos dos colegas de outros semestres e fomos tirando as dúvidas sobre eles com o Copilot: como funciona o dispose()? Como aplica uma textura na tela? Foram algumas das dúvidas iniciais.
+
+Após, foi hora de desenvolver o jogo mesmo, criar as classes, as telas, os botões, cartas, lógica, etc. Utilizando Java e orientação a objetos fica muito nítido como o jogo e suas telas funcionam, parece tudo muito organizado. O maior desafio foi a compreensão do libgdx para criação do jogo, algumas funções demoraram a fazer sentidoe e isto atrasou um pouco o processo. Na parte do quiz, foi interessante ler um pouco mais sobre o Geoparque Quarta Colônia e como temos material científico sendo produzido aqui pertinho. Todas as fontes que utilizamos para as perguntas do quiz podem ser encontradas nas referências. 
+
+## Diagrama de Classes
+
+## Referências
+Material utilizado no quiz
 https://dinossaurosdobrasil.wixsite.com/dinossauros-e-afins/macrocollum
 https://jornal.usp.br/ciencias/reconstituicao-de-cranio-revela-que-dinossauro-de-233-milhoes-de-anos-era-cacador-com-visao-agucada/
 https://jornal.usp.br/ciencias/ciencias-biologicas/mandibula-voraz-conheca-o-dinossauro-predador-mais-antigo-do-brasil/
 https://www.geoparquequartacolonia.com.br/home
 https://www.ufsm.br/midias/arco/tataravo-de-gigantes
+Copilot
+https://libgdx.com/wiki/start/a-simple-game
+https://github.com/elc117/game-2023b-snakegame (jogo do ano anterior consultado para referências no uso da libgdx)
