@@ -35,10 +35,10 @@ Useful Gradle tasks and flags:
 Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
 For example, `core:clean` removes `build` folder only from the `core` project.
 
-## Dinomon
-O jogo de cartas do Geoparque Quarta Colônia
+# Dinomon The Card Game
+*O jogo de cartas do Geoparque Quarta Colônia*
 
-Autoria: Antônio Sérgio Tolio e Gustavo Pott, alunos de Sistemas de Informação, UFSM
+**Autoria: Antônio Sérgio Tolio e Gustavo Pott, alunos de Sistemas de Informação, UFSM**
 
 Dinomon é um jogo digital de cartas de dinossauros inspirado no Geoparque Quarta Colônia onde é possível duelar com diferentes cartas e elementos. O jogo conta com 30 cartas de dinossauros, distribuídas em três elementos: terrestre, aquático e voador, representando diferentes tipos de dinossauros. Inspirado no modo de jogo Desafio Ninja do famoso Club Penguin, é preciso vencer três duelos com um mesmo elemento e acertar uma pergunta sobre o Geoparque para ser vitorioso. Cada elemento é forte e fraco contra outros elementos. O elemento terrestre é forte contra aquático e fraco contra voador, o elemento aquático é forte contra voador e fraco contra terrestre e o elemento voador é forte contra terrestre e fraco contra aquático. Se duas cartas de mesmo elemento se enfrentam, vence o de maior valor, uma vez que cada carta possui um valor de 1 a 10.
 
@@ -54,12 +54,18 @@ Após, foi hora de desenvolver o jogo mesmo, criar as classes, as telas, os bot�
 
 ## Referências
 Material utilizado no quiz
-https://dinossaurosdobrasil.wixsite.com/dinossauros-e-afins/macrocollum
-https://jornal.usp.br/ciencias/reconstituicao-de-cranio-revela-que-dinossauro-de-233-milhoes-de-anos-era-cacador-com-visao-agucada/
-https://jornal.usp.br/ciencias/ciencias-biologicas/mandibula-voraz-conheca-o-dinossauro-predador-mais-antigo-do-brasil/
-https://www.geoparquequartacolonia.com.br/home
-https://www.ufsm.br/midias/arco/tataravo-de-gigantes
+- https://dinossaurosdobrasil.wixsite.com/dinossauros-e-afins/macrocollum
+- https://jornal.usp.br/ciencias/reconstituicao-de-cranio-revela-que-dinossauro-de-233-milhoes-de-anos-era-cacador-com-visao-agucada/
+- https://jornal.usp.br/ciencias/ciencias-biologicas/mandibula-voraz-conheca-o-dinossauro-predador-mais-antigo-do-brasil/
+- https://www.geoparquequartacolonia.com.br/home
+- https://www.ufsm.br/midias/arco/tataravo-de-gigantes
+
 Copilot
-https://libgdx.com/wiki/start/a-simple-game
-https://github.com/elc117/game-2023b-snakegame (jogo do ano anterior consultado para referências no uso da libgdx)
-https://club-penguin-land20.fandom.com/pt-br/wiki/Desafio-Ninja
+- Como coloco uma imagem na tela utilizando java e libgdx?
+- Como redimensionar a tela do jogo?
+- Como evitar que os elementos saiam de posição ao aumentar a tela?
+
+Demais referências
+- https://libgdx.com/wiki/start/a-simple-game
+- https://github.com/elc117/game-2023b-snakegame (jogo do ano anterior consultado para referências no uso da libgdx)
+- https://club-penguin-land20.fandom.com/pt-br/wiki/Desafio-Ninja
