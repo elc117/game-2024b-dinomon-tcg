@@ -62,3 +62,4 @@ https://www.ufsm.br/midias/arco/tataravo-de-gigantes
 Copilot
 https://libgdx.com/wiki/start/a-simple-game
 https://github.com/elc117/game-2023b-snakegame (jogo do ano anterior consultado para referências no uso da libgdx)
+https://club-penguin-land20.fandom.com/pt-br/wiki/Desafio-Ninja
