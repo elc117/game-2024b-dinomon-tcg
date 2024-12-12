@@ -67,23 +67,23 @@ public class PartidaScreen implements Screen {
         image_questao = new Texture(TexturePath);
         correto = new Texture("correto.png");
         errado = new Texture("errado.png");
-        int yBotoesQuiz = Gdx.graphics.getHeight() / 2 - 200;
-        int xBotoesQuiz = -160;
+        int yBotoesQuiz = 80;
+        int xBotoesQuiz = -240;
         BotaoA = new Botao("botoesquiz/4.png", 80, 80);
         BotaoA.setButtonY(yBotoesQuiz);
         BotaoA.setButtonX(xBotoesQuiz);
 
         BotaoB = new Botao("botoesquiz/5.png", 80, 80);
         BotaoB.setButtonY(yBotoesQuiz);
-        BotaoB.setButtonX(xBotoesQuiz + 20 + BotaoA.getButtonWidth());
+        BotaoB.setButtonX(xBotoesQuiz + 280);
 
         BotaoC = new Botao("botoesquiz/6.png", 80, 80);
-        BotaoC.setButtonY(yBotoesQuiz);
-        BotaoC.setButtonX(xBotoesQuiz + 40 + BotaoA.getButtonWidth() + BotaoB.getButtonWidth());
+        BotaoC.setButtonY(yBotoesQuiz+100);
+        BotaoC.setButtonX(xBotoesQuiz );
 
         BotaoD = new Botao("botoesquiz/7.png", 80, 80);
-        BotaoD.setButtonY(yBotoesQuiz);
-        BotaoD.setButtonX(xBotoesQuiz + 60 + BotaoA.getButtonWidth() + BotaoB.getButtonWidth() + BotaoC.getButtonWidth());
+        BotaoD.setButtonY(yBotoesQuiz+100);
+        BotaoD.setButtonX(xBotoesQuiz + 280);
 
         iniciarPartida();
     }

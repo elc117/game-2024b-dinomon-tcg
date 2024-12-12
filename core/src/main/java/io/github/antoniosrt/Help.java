@@ -19,8 +19,8 @@ public class Help implements Screen {
         gameImage = new Texture("helpbg.png");
 
         botaoBack = new Botao("helpback.png", 80, 80);
-        botaoBack.setButtonY(-180);
-        botaoBack.setButtonX(260);
+        botaoBack.setButtonY(-380);
+        botaoBack.setButtonX(600);
     }
 
     @Override
