@@ -263,7 +263,7 @@ public class PartidaScreen implements Screen {
             if (carta == null) {
                 continue;
             }
-            if (quiz != 1 && carta.detectaClique()) {
+            if (quiz != 1 && carta.detectaClique() && !partida.validarJogadas()) {
                 somCombateCartas.play();
                 partida.getJogador1().selecionarCarta(i);
                 partida.getJogador2().selecionarCarta(i);
