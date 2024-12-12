@@ -5,15 +5,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.audio.Music;
 
 public class Main extends ApplicationAdapter {
     private SpriteBatch batch;
     private Screen currentScreen;
     private static final int PADDING = 0;
 
+    private Music backgroundMusic;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("musics/backgroundmusic.mp3"));
+        backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(0.1f); // Ajustar o volume conforme necessário
+        backgroundMusic.play();
         int width = Gdx.graphics.getWidth() - PADDING;
         int height = Gdx.graphics.getHeight() - PADDING;
         Gdx.graphics.setWindowedMode(width, height);

@@ -18,7 +18,7 @@ public class VitoriaScreen implements Screen {
         gameImage = new Texture("telafinal/5.png");
 
         botaoHome = new Botao("homelogo.png", 80, 80);
-        botaoHome.setButtonY(100);
+        botaoHome.setButtonY(290);
     }
 
     @Override
@@ -35,7 +35,6 @@ public class VitoriaScreen implements Screen {
 
         if (botaoHome.detectaClique()){
             game.setScreen(new MenuScreen(game));
-            dispose();
         }
     }
 

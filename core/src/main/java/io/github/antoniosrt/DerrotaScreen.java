@@ -18,7 +18,7 @@ public class DerrotaScreen implements Screen {
         gameImage = new Texture("telafinal/6.png");
 
         botaoHome = new Botao("homelogo.png", 80, 80);
-        botaoHome.setButtonY(100);
+        botaoHome.setButtonY(290);
     }
 
     @Override
@@ -35,7 +35,6 @@ public class DerrotaScreen implements Screen {
 
         if (botaoHome.detectaClique()){
             game.setScreen(new MenuScreen(game));
-            dispose();
         }
     }
 

@@ -1,5 +1,7 @@
 package io.github.antoniosrt;
 
+import com.badlogic.gdx.audio.Music;
+
 import static io.github.antoniosrt.UtilHelper.*;
 
 public class Partida {
@@ -7,14 +9,15 @@ public class Partida {
     private Jogador jogador2;
     private int turno;
     private float timeLeft; // Tempo restante para o turno
-
+    private float timeLeftMax = 30.0f;
     private Boolean jogadaTurno = false;
+
 
     public Partida(String nomeJogador1, String nomeJogador2) {
         this.jogador1 = new Jogador(nomeJogador1);
         this.jogador2 = new Jogador(nomeJogador2);
         this.turno = 1;
-        this.timeLeft = 30.0f; // 30 segundos para cada turno
+        this.timeLeft = timeLeftMax; // 30 segundos para cada turno
         jogador1.iniciarJogo();
         jogador2.iniciarJogo();
     }
@@ -28,14 +31,13 @@ public class Partida {
     }
 
     public void startTurn() {
-        timeLeft = 30.0f; // Reiniciar o tempo do turno
+        timeLeft = timeLeftMax; // Reiniciar o tempo do turno
     }
 
     private void endTurn() {
         if (getJogada()) {
             return;
         }
-        turno++;
         startTurn(); // Iniciar próximo turno
     }
 
@@ -70,9 +72,9 @@ public class Partida {
     public void setJogadaTurno(Boolean jogada){
         jogadaTurno = jogada;
     }
-    public int combate() throws InterruptedException {
+    public int combate(Music embaralhamento,Music combateCartasMusic) throws InterruptedException {
 //        Thread.sleep(5000);
-        int resultado = combateCartas();
+        int resultado = combateCartas(embaralhamento,combateCartasMusic);
         if(resultado == 1){
             System.out.println("Jogador 1 venceu o combate");
         }
@@ -86,43 +88,55 @@ public class Partida {
         if(resultadoVitoria !=0){
             return resultadoVitoria;
         }
-        iniciarNovaRodada();
         return 0;
     }
-    public int combateCartas() throws InterruptedException {
+
+    public void powerUp(Jogador jogadorGanhador, Jogador jogadorPerdedor) {
+        int elementoPerdeuPonto = jogadorPerdedor.perdePontosPowerUp();
+        if (elementoPerdeuPonto != -1) {
+            jogadorGanhador.setVitorias(elementoPerdeuPonto);
+            System.out.println("Jogador " + jogadorPerdedor.getNome() + " perdeu um ponto de " + getElementoNome(elementoPerdeuPonto));
+        }
+    }
+    public int combateCartas(Music embaralhamento,Music combateCartasMusic) throws InterruptedException {
         Carta cartaJogador1 = jogador1.getMao().getCartaJogada();
         Carta cartaJogador2 = jogador2.getMao().getCartaJogada();
         if(cartaJogador1.getElemento() == cartaJogador2.getElemento()){
-            return validaEmpatePorForcaCarta(cartaJogador1,cartaJogador2);
+             validaEmpatePorForcaCarta(cartaJogador1,cartaJogador2);
         }
-
         //Pega por elemento da carta do jogador 1
         switch (cartaJogador1.getElemento()){
+            //agua ganha e terra perde
             case VENTO:
                 if(cartaJogador2.getElemento() == AGUA){
-                    pontuarVitoria(jogador2,VENTO);
+                    //meu elemento eh vento e perdeu pra agua jogador 2 ganha com o elemento dele
+                    pontuarVitoria(jogador2,cartaJogador2.getElemento());
                 }
                 else if(cartaJogador2.getElemento() == TERRA){
                     pontuarVitoria(jogador1,VENTO);
                 }
                 break;
+
+          //agua vence ar e perde para terra
           case  AGUA:
                 if(cartaJogador2.getElemento() == VENTO){
                     pontuarVitoria(jogador1,AGUA);
                 }
                 else if(cartaJogador2.getElemento() == TERRA){
-                    pontuarVitoria(jogador2,AGUA);
+                    //meu elemento eh agua e perdeu pra terra jogador 2 ganha com o elemento dele
+                    pontuarVitoria(jogador2,cartaJogador2.getElemento());
                 }
                 break;
            case TERRA:
                 if(cartaJogador2.getElemento() == VENTO){
-                    pontuarVitoria(jogador2,TERRA);
+                    pontuarVitoria(jogador2,cartaJogador2.getElemento());
                 }
                 else if(cartaJogador2.getElemento() == AGUA){
                     pontuarVitoria(jogador1,TERRA);
                 }
                 break;
         }
+        embaralhamento.play();
         iniciarNovaRodada();
         return -1;
     }
@@ -143,12 +157,15 @@ public class Partida {
     }
     public void iniciarNovaRodada(){
         turno++;
-        timeLeft = 30.0f;
+        timeLeft = timeLeftMax;
         jogador1.comprarCarta();
         jogador2.comprarCarta();
         jogador1.setJogada(false);
         jogador2.setJogada(false);
         jogadaTurno = false;
+    }
+    public float getTimeLeftMax(){
+        return timeLeftMax;
     }
     public int validaEmpatePorForcaCarta(Carta cartaJog1,Carta cartaJog2){
         if(cartaJog1.getValor() == cartaJog2.getValor()){

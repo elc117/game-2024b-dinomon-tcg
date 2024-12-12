@@ -43,6 +43,7 @@ public class Botao {
         return buttonY;
     }
 
+
     public int getButtonWidth() {
         return buttonWidth;
     }
