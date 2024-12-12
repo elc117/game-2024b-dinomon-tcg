@@ -52,6 +52,8 @@ Após, foi hora de desenvolver o jogo mesmo, criar as classes, as telas, os bot�
 
 ## Diagrama de Classes
 
+<img src="https://github.com/elc117/game-2024b-dinomon-tcg/blob/main/diagramaclasses.png" alt="Diagrama">
+
 ## Referências
 Material utilizado no quiz
 - https://dinossaurosdobrasil.wixsite.com/dinossauros-e-afins/macrocollum
